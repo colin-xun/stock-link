@@ -49,7 +49,7 @@ public class UserController {
      * @return 登录结果
      */
     @PostMapping("/login")
-    public Result<UserVO> login(@RequestBody @Valid UserVO userVO, BindingResult errors, HttpServletRequest request) {
+    public Result<UserVO> login(@RequestBody UserVO userVO, BindingResult errors, HttpServletRequest request) {
         Result<UserVO> result;
         // 如果校验有错，返回登录失败以及错误信息
         if (errors.hasErrors()) {
@@ -58,11 +58,7 @@ public class UserController {
             return result;
         }
         // 调用登录服务
-        result = userService.login(userVO);
-        // 如果登录成功，则设定session
-        if (result.isSuccess()) {
-            request.getSession().setAttribute(UserConstants.SESSION_NAME, result.getData());
-        }
+        result = userService.login(userVO, request.getSession());
         return result;
     }
 

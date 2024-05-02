@@ -22,7 +22,7 @@ public interface UserService {
      * @param userVO 用户对象
      * @return 登录结果
      */
-    Result<UserVO> login(UserVO userVO);
+    Result<UserVO> login(UserVO userVO, HttpSession session);
 
     /**
      * 修改用户信息

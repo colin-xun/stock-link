@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @JsonIgnoreProperties(value = {"password"}, allowSetters = true)
 public class UserVO {
@@ -24,11 +22,4 @@ public class UserVO {
     @Pattern(regexp = "^1[3-9]\\d{9}$", message = "手机号格式不正确")
     private String phoneNumber;
 
-    private Date registrationDate;
-
-    private Date lastLogin;
-
-    private Boolean isActive;
-
-    private Boolean isAdmin;
 }

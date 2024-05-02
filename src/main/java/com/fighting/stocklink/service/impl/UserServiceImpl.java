@@ -36,19 +36,20 @@ public class UserServiceImpl implements UserService {
         // 加密储存用户的密码（使用Hutool实用工具中的DigestUtil工具类）
         // todo wtx 这里暂时不加密
 //        user.setPassword(DigestUtil.md5Hex(user.getPassword()));
-        userVO.setIsActive(true);
-        userVO.setIsAdmin(false);
-        userVO.setRegistrationDate(new Date());
-        // 存入数据库
         UserPO user = BeanUtil.toBean(userVO, UserPO.class);
+        user.setIsActive(true);
+        user.setIsAdmin(false);
+        user.setRegistrationDate(new Date());
+        user.setLastLogin(new Date());
+        // 存入数据库
         userMapper.insert(user);
         // 返回成功消息
-        result.setResultSuccess("注册用户成功！", userVO);
+        result.setResultSuccess("注册用户成功！", null);
         return result;
     }
 
     @Override
-    public Result<UserVO> login(UserVO userVO) {
+    public Result<UserVO> login(UserVO userVO, HttpSession session) {
         Result<UserVO> result = new Result<>();
         // 去数据库查找用户
         UserPO userPO = userMapper.getByUsername(userVO.getUsername());
@@ -57,7 +58,9 @@ public class UserServiceImpl implements UserService {
             return result;
         }
         // 比对密码（数据库取出用户的密码是加密的，因此要把前端传来的用户密码加密再比对）
-        if (!userPO.getPassword().equals(DigestUtil.md5Hex(userVO.getPassword()))) {
+        // todo wtx 暂时关闭加密功能
+//        if (!userPO.getPassword().equals(DigestUtil.md5Hex(userVO.getPassword()))) {
+        if (!userPO.getPassword().equals(userVO.getPassword())) {
             result.setResultFailed("用户名或者密码错误！");
             return result;
         }
@@ -65,8 +68,13 @@ public class UserServiceImpl implements UserService {
         userPO.setLastLogin(new Date());
         userMapper.updateByPrimaryKey(userPO);
 
+        // 如果登录成功，则设定session
+        if (result.isSuccess()) {
+            session.setAttribute(UserConstants.SESSION_NAME, userPO);
+        }
+
         // 设定登录成功消息
-        result.setResultSuccess("登录成功！", userVO);
+        result.setResultSuccess("登录成功！", null);
         return result;
     }
 
@@ -88,7 +96,7 @@ public class UserServiceImpl implements UserService {
         ClassExamine.objectOverlap(userVO, userPO);
         // 存入数据库
         userMapper.updateByPrimaryKey(userPO);
-        result.setResultSuccess("修改用户成功！", BeanUtil.toBean(userPO, UserVO.class));
+        result.setResultSuccess("修改用户成功！", null);
         return result;
     }
 
@@ -109,7 +117,7 @@ public class UserServiceImpl implements UserService {
             result.setResultFailed("用户信息无效！");
             return result;
         }
-        result.setResultSuccess("用户已登录！", BeanUtil.toBean(userPO, UserVO.class));
+        result.setResultSuccess("用户已登录！", null);
         return result;
     }
 
