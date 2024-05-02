@@ -126,7 +126,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="getByUsername"  parameterType="java.lang.String"  resultMap="BaseResultMap">
+  <select id="getByUsername" resultMap="BaseResultMap">
     select *
     from user
     where username = #{username}
