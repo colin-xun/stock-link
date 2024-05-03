@@ -65,7 +65,7 @@
 
 
         <!-- 生成Mapper.xml文件 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.fighting.stocklink.dao" targetProject="src/main/java">
             <!--<property name="enableSubPackages" value="false"/>-->
         </sqlMapGenerator>
 

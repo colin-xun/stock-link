@@ -1,4 +1,4 @@
-package com.fighting.stocklink.config;
+package com.fighting.stocklink.config.web.base;
 
 import com.fighting.stocklink.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,11 +22,13 @@ public class UserInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		// 同样在这里调用用户服务传入session，判断用户是否登录或者有效
 		// 未登录则重定向至主页（假设主页就是/）
-		if (!userService.isLogin(request.getSession()).isSuccess()) {
+		try {
+			userService.isLogin(request.getSession());
+			return true;
+		} catch (Exception e) {
 			response.sendRedirect("/");
 			return false;
 		}
-		return true;
 	}
 
 	// Controller方法执行之后

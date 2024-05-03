@@ -1,6 +1,6 @@
 -- 初始化用户表
-DROP TABLE IF EXISTS `userVO`;
-CREATE TABLE `userVO` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
                         `id` INT AUTO_INCREMENT PRIMARY KEY COMMENT '用户ID',
                         `username` VARCHAR(50) NOT NULL COMMENT '用户名',
                         `password` VARCHAR(255) NOT NULL COMMENT '密码',

@@ -1,4 +1,4 @@
-package com.fighting.stocklink.config;
+package com.fighting.stocklink.config.web.base;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
