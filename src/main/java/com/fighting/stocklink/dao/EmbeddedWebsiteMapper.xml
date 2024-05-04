@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fighting.stocklink.dao.EmbeddedWebsiteMapper">
+  <resultMap id="BaseResultMap" type="com.fighting.stocklink.model.EmbeddedWebsite">
+    <id column="website_id" jdbcType="INTEGER" property="websiteId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="website_name" jdbcType="VARCHAR" property="websiteName" />
+    <result column="website_url" jdbcType="VARCHAR" property="websiteUrl" />
+    <result column="layout_id" jdbcType="INTEGER" property="layoutId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    website_id, user_id, website_name, website_url, layout_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EmbeddedWebsite
+    where website_id = #{websiteId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from EmbeddedWebsite
+    where website_id = #{websiteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fighting.stocklink.model.EmbeddedWebsite">
+    insert into EmbeddedWebsite (website_id, user_id, website_name, 
+      website_url, layout_id)
+    values (#{websiteId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{websiteName,jdbcType=VARCHAR}, 
+      #{websiteUrl,jdbcType=VARCHAR}, #{layoutId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fighting.stocklink.model.EmbeddedWebsite">
+    insert into EmbeddedWebsite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="websiteId != null">
+        website_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="websiteName != null">
+        website_name,
+      </if>
+      <if test="websiteUrl != null">
+        website_url,
+      </if>
+      <if test="layoutId != null">
+        layout_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="websiteId != null">
+        #{websiteId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="websiteName != null">
+        #{websiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteUrl != null">
+        #{websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null">
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fighting.stocklink.model.EmbeddedWebsite">
+    update EmbeddedWebsite
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="websiteName != null">
+        website_name = #{websiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteUrl != null">
+        website_url = #{websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="layoutId != null">
+        layout_id = #{layoutId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where website_id = #{websiteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fighting.stocklink.model.EmbeddedWebsite">
+    update EmbeddedWebsite
+    set user_id = #{userId,jdbcType=INTEGER},
+      website_name = #{websiteName,jdbcType=VARCHAR},
+      website_url = #{websiteUrl,jdbcType=VARCHAR},
+      layout_id = #{layoutId,jdbcType=INTEGER}
+    where website_id = #{websiteId,jdbcType=INTEGER}
+  </update>
+</mapper>

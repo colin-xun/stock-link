@@ -4,7 +4,6 @@ package com.fighting.stocklink.controller;
 import cn.hutool.core.lang.Validator;
 import com.fighting.stocklink.config.web.ActionResult;
 import com.fighting.stocklink.config.web.exceptions.DataException;
-import com.fighting.stocklink.config.web.exceptions.ParameterInvalidException;
 import com.fighting.stocklink.constant.UserConstants;
 import com.fighting.stocklink.model.User;
 import com.fighting.stocklink.service.UserService;
@@ -17,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired

@@ -86,5 +86,33 @@
             <!--是否使用实际列名,默认为false-->
             <!--<property name="useActualColumnNames" value="false" />-->
         </table>
+
+        <table schema="" tableName="Layout" domainObjectName="Layout"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <!--是否使用实际列名,默认为false-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        </table>
+
+        <table schema="" tableName="EmbeddedWebsite" domainObjectName="EmbeddedWebsite"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <!--是否使用实际列名,默认为false-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        </table>
+
+        <table schema="" tableName="Group" domainObjectName="Group"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <!--是否使用实际列名,默认为false-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        </table>
+
+        <table schema="" tableName="ExternalLink" domainObjectName="ExternalLink"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" selectByExampleQueryId="false">
+            <!--是否使用实际列名,默认为false-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        </table>
     </context>
 </generatorConfiguration>
