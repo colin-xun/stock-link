@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 嵌入网站模型
+ */
 @RestController
 @RequestMapping("/website")
 public class EmbeddedWebsiteController {
@@ -16,7 +19,7 @@ public class EmbeddedWebsiteController {
     @Autowired
     private EmbeddedWebsiteService embeddedWebsiteService;
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ActionResult<?> embedWebsite(@RequestBody EmbeddedWebsite website) {
         embeddedWebsiteService.embedWebsite(website);
         return ActionResult.success("Website embedded successfully");

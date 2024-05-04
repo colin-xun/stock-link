@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 外链模型
+ */
 @RestController
 @RequestMapping("/external-link")
 public class ExternalLinkController {
@@ -21,7 +24,7 @@ public class ExternalLinkController {
         return ActionResult.success(systemExternalLinks);
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ActionResult<?> addCustomExternalLink(@RequestBody ExternalLink externalLink) {
         externalLinkService.addCustomExternalLink(externalLink);
         return ActionResult.success("Custom external link added successfully");

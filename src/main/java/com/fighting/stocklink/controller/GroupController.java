@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 分组模型
+ */
 @RestController
 @RequestMapping("/group")
 public class GroupController {
@@ -16,7 +19,7 @@ public class GroupController {
     @Autowired
     private GroupService groupService;
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ActionResult<?> createGroup(@RequestBody Group group) {
         groupService.createGroup(group);
         return ActionResult.success("Group created successfully");
